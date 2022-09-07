@@ -633,54 +633,34 @@ class NHLRink(Rink):
 
         super().__init__(**kwargs)
 
-class MichiganRink(Rink):
-    """ Version of Rink class based off a typical NHL ice surface.
+class MichiganRink(NHLRink):
+    """ Version of Rink class based off of the NWHL rink in the 2021 playoffs (Herb Brooks).
 
-    Includes an additional feature "crease_notch" for the little notches inside the crease.
-    
-    Also includes Michigan 100 year logo
+    Includes additional features of "logo" for the logo at center ice and
+    "crease_notch" for the little notches inside the crease.  Also, removes
+    the trapezoid and increases the size of the neutral zone.
 
     See Rink for full documentation.
     """
 
     def __init__(self, **kwargs):
-        crease = kwargs.get("crease", {})
-        line_thickness = kwargs.get("line_thickness", 1 / 6)
-        half_length = kwargs.get("boards", {}).get("length", 200) / 2
-        half_goal_line_thickness = kwargs.get("goal_line", {}).get("length", line_thickness) / 2
-        goal_line_x = kwargs.get("goal_line", {}).get(
-            "x", half_length - 11 - half_goal_line_thickness)
-        crease_thickness = crease.get("thickness", line_thickness)
-        notch_width = 5 / 12
+        half_width = kwargs.get("boards", {}).get("width", 85) / 2
+        center_radius = kwargs.get("center_circle", {}).get("radius", 15)
 
         michigan_updates = {
-            "crease_notch": {
-                "class": rf.RinkRectangle,
-                "x": goal_line_x - 4 - crease_thickness / 2,
-                "y": ((crease.get("width", 8) - notch_width) / 2
-                      - crease_thickness),
-                "length": crease_thickness,
-                "width": notch_width,
-                "reflect_x": crease.get("reflect_x", True),
-                "reflect_y": crease.get("reflect_y", True),
-                "color": kwargs.get("line_color", "red"),
-                "zorder": kwargs.get("line_zorder", 5),
-                "visible": crease.get("visible", True),
-            },
             "logo": {
                 "class": rf.CircularImage,
-                "path": "https://raw.githubusercontent.com/rajraomichigan/hockey_rink/master/images/michigan100.png",
+                "path": "https://raw.githubusercontent.com/the-bucketless/hockey_rink/master/images/nwhl_logo.png",
                 "radius": center_radius,
                 "is_constrained": False,
                 "zorder": 11
             }
         }
 
-        kwargs["crease_notch"] = {**michigan_updates["crease_notch"],
-                                  **kwargs.get("crease_notch", {})}
+        for k, v in michigan_updates.items():
+            kwargs[k] = {**v, **kwargs.get(k, {})}
 
         super().__init__(**kwargs)
-
 
         
 class NWHLRink(NHLRink):
