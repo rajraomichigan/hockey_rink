@@ -685,7 +685,7 @@ class NWHLRink(NHLRink):
             "trapezoid": {"visible": False},
             "logo": {
                 "class": rf.CircularImage,
-                "path": "https://raw.githubusercontent.com/the-bucketless/hockey_rink/master/images/nwhl_logo.png",
+                "path": "https://github.com/rajraomichigan/hockey_rink/blob/df5a8e22a45b6f28e8758c269464c72e70235f24/images/michigan_hockey.png",
                 "radius": center_radius,
                 "is_constrained": False,
                 "zorder": 11
