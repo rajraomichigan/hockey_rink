@@ -673,6 +673,7 @@ class MichiganRink(Rink):
                 "radius": center_radius,
                 "is_constrained": False,
                 "zorder": 11
+            }
         }
 
         kwargs["crease_notch"] = {**michigan_updates["crease_notch"],
