@@ -650,7 +650,7 @@ class MichiganRink(NHLRink):
         michigan_updates = {
             "logo": {
                 "class": rf.CircularImage,
-                "path": "https://raw.githubusercontent.com/the-bucketless/hockey_rink/master/images/nwhl_logo.png",
+                "path": "https://raw.githubusercontent.com/rajraomichigan/hockey_rink/df5a8e22a45b6f28e8758c269464c72e70235f24/images/michigan_hockey.png",
                 "radius": center_radius,
                 "is_constrained": False,
                 "zorder": 11
